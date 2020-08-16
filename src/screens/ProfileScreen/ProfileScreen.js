@@ -1,112 +1,69 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import { View, Text, ScrollView } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import MenuItem from '../../components/MenuItem';
+import Avatar from '../../components/Avatar';
+import styles from './styles';
 
 const ProfileScreen = ({ navigation }) => {
   return (
     <ScrollView>
-      <View style={{ backgroundColor: 'white', marginBottom: 10 }}>
-        <View style={{ alignItems: 'center', paddingVertical: 20 }}>
-          <TouchableOpacity
-            onPress={() => {
-              console.log('Avatar Clicked');
-            }}
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
+          <TouchableWithoutFeedback
+            onPress={() => console.log('Avatar Clicked')}
             activeOpacity={1}
+            style={styles.avatarHolder}
           >
-            <View
-              style={{
-                width: 120,
-                height: 120,
-                backgroundColor: '#e9ecef',
-                borderRadius: 60,
-                overflow: 'hidden',
-                marginVertical: 15,
-              }}
-            >
-              <Image
-                source={require('../../../assets/avatar.jpg')}
-                style={{ width: 120, height: 120 }}
-              />
-            </View>
-          </TouchableOpacity>
-          <Text style={{ fontWeight: '600' }}>Rocky Nguyen</Text>
+            <Avatar size={120} imageSource={require('../../../assets/avatar.jpg')} />
+          </TouchableWithoutFeedback>
+          <Text style={styles.userNameText}>Rocky Nguyen</Text>
         </View>
       </View>
-      <View style={{ marginBottom: 10 }}>
-        <View style={{ marginBottom: 10, backgroundColor: 'white' }}>
-          <View
-            style={{
-              height: 50,
-              paddingHorizontal: 15,
-              borderColor: '#dee2e6',
-              borderBottomWidth: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Icon name="settings" size={20} style={{ marginRight: 10 }} />
-              <Text>My Vouchers</Text>
-            </View>
-
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View
-                style={{
-                  marginRight: 10,
-                  backgroundColor: '#e03131',
-                  padding: 5,
-                  borderRadius: 20,
-                }}
-              >
-                <Text style={{ color: 'white', fontSize: 12 }}>200</Text>
-              </View>
-              <Icon name="chevron-right" size={20} />
-            </View>
-          </View>
+      <View style={styles.menu}>
+        <View style={styles.menuGroup}>
+          <MenuItem
+            title="My Account"
+            iconName="user"
+            onPress={() => navigation.navigate('Square')}
+          />
+          <MenuItem
+            title="My Vouchers"
+            iconName="tag"
+            badge={{ count: 10, color: '#e03131' }}
+            onPress={() => navigation.navigate('Square')}
+          />
           <MenuItem
             title="Payment"
             iconName="credit-card"
             onPress={() => navigation.navigate('Square')}
           />
-          <MenuItem title="Address" />
+          <MenuItem title="Address" iconName="map-pin" />
         </View>
-        <View style={{ marginBottom: 10, backgroundColor: 'white' }}>
+        <View style={styles.menuGroup}>
+          <MenuItem title="Intive Friends" iconName="user-plus" />
+          <MenuItem title="Feedback" iconName="mail" />
+        </View>
+        <View style={styles.menuGroup}>
+          <MenuItem title="User Policy" iconName="help-circle" />
           <MenuItem title="Settings" iconName="settings" />
-          <MenuItem title="User Policy" />
           <MenuItem title="About Us" iconName="info" />
         </View>
       </View>
 
-      <View
-        style={{
-          borderWidth: 1,
-          borderColor: '#fa5252',
-          marginBottom: 20,
-          marginHorizontal: 30,
-          borderRadius: 100,
-        }}
+      <TouchableWithoutFeedback
+        style={styles.logoutButton}
+        onPress={() => console.log('Log Out Clicked')}
       >
-        <TouchableOpacity
-          style={{ padding: 10, alignItems: 'center' }}
-          activeOpacity={1}
-          onPress={() => {
-            console.log('Log Out Clicked');
-          }}
-        >
-          <Text style={{ color: '#fa5252' }}>Log Out</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.logoutButtonText}>Log Out</Text>
+      </TouchableWithoutFeedback>
 
-      <View style={{ alignItems: 'center' }}>
-        <Text style={{ color: '#868e96', marginBottom: 5 }}>Version 1.0.0</Text>
-        <Text style={{ color: '#868e96', marginBottom: 5 }}>SOLID Engineer</Text>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Version 1.0.0</Text>
+        <Text style={styles.footerText}>SOLID Engineer</Text>
       </View>
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default ProfileScreen;
