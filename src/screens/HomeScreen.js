@@ -47,6 +47,12 @@ const HomeScreen = ({ navigation }) => {
         }}
         title="Box Screen"
       />
+      <Button
+        onPress={() => {
+          navigation.navigate('Profile');
+        }}
+        title="Profile Screen"
+      />
     </View>
   );
 };

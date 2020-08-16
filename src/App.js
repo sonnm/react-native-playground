@@ -9,6 +9,7 @@ import ColorScreen from './screens/ColorScreen';
 import SquareScreen from './screens/SquareScreen';
 import TextScreen from './screens/TextScreen';
 import BoxScreen from './screens/BoxScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App: () => React$Node = () => {
         <Stack.Screen name="Square" component={SquareScreen} />
         <Stack.Screen name="Text" component={TextScreen} />
         <Stack.Screen name="Box" component={BoxScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
